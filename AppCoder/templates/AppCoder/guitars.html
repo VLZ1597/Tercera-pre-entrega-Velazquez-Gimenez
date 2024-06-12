@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title_head %}
+Guitars
+{% endblock title_head %}
+
+{% block h1_header %}
+<h1>LISTA DE GUITARS</h1>
+<h2>
+    <ol>
+        {% for guitar in guitars %}
+        <li> {{guitar}} </li>
+        {% endfor %}
+    </ol>
+</h2>
+{% endblock h1_header %}
