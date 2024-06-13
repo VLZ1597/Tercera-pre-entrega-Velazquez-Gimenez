@@ -4,13 +4,22 @@
 Guitars
 {% endblock title_head %}
 
-{% block h1_header %}
-<h1>LISTA DE GUITARS</h1>
+{% block h1_header %} 
+<h1>Lista de Guitars</h1>
+<form action={% url "guitars" %} method="get">
+    {{formulario}}
+    <input class="btn btn-primary" type="submit" value='Buscar'>
+</form> 
 <h2>
+    {% if guitars %}
     <ol>
-        {% for guitar in guitars %}
-        <li> {{guitar}} </li>
+        {% for guitar in guitars  %}
+        <li> {{guitar}} |<a href= {% url "eliminar_guitar" guitar.id%}>Eliminar</a>|<a href= {% url "ver_guitar" guitar.id%}>Ver</a>|
+        </li>   
         {% endfor %}
     </ol>
+{% else %}
+<p>No hay Guitars creadas.</p>
+{% endif %}
 </h2>
 {% endblock h1_header %}

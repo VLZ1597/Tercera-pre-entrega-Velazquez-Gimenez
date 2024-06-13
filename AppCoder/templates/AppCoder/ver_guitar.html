@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title_head %}
+Guitar
+{% endblock title_head %}
+
+{% block h1_header %}
+<h2>{{guitar}}</h2>
+<h2>
+    <ul>
+        <li>Marca: {{guitar.marca}} </li>
+        <li>Forma: {{guitar.forma}} </li>
+        <a class="btn btn-primary" href= {% url "guitars" %}>Volver</a>
+    </ul>
+</h2>   
+{% endblock h1_header %}
+    

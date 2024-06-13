@@ -1,6 +1,6 @@
 from django.shortcuts import render , redirect
 from AppCoder.models import Guitar
-from AppCoder.forms import CrearGuitarFormulario
+from AppCoder.forms import CrearGuitarFormulario , BuscarGuitar
 
 
 def inicio(request):
@@ -31,6 +31,19 @@ def crear_guitar(request):
 
 def guitars(request):
     
-    guitars = Guitar.objects.all()
-    
-    return render(request,'AppCoder/guitars.html', {'guitars': guitars})
+    formulario = BuscarGuitar(request.GET)
+    if formulario.is_valid():   
+        marca = formulario.cleaned_data['marca']        
+        guitar = Guitar.objects.filter(marca__icontains=marca)
+
+    return render(request,'AppCoder/guitars.html', {'guitars': guitar ,'formulario': formulario})
+
+def eliminar_guitar(request,id):
+    guitar = Guitar.objects.get(id=id)
+    guitar.delete()
+    return redirect('guitars')  
+
+
+def ver_guitar(request,id):
+    guitar = Guitar.objects.get(id=id)
+    return render(request, 'AppCoder/ver_guitar.html', {'guitar': guitar})

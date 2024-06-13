@@ -8,10 +8,11 @@ Crear Guitar
 <h1>Crea tu guitar</h1>
 <form action={% url "crear_guitar" %} method='POST'>
     {% csrf_token %}
-
-    {{formulario}}
+    <p>
+        {{formulario}}
+    </p>
     
-    <input type='submit' value='Enviar'>
+    <input class="btn btn-primary" type='submit' value='Enviar'>    
 
 </form>
 {% endblock h1_header %}
